@@ -33,13 +33,13 @@ final_df = impute(final_df)
 # get rid of outliers
 
 
-temp = final_df[(np.abs(stats.zscore(final_df)) < 3).all(axis=1)]
+df_no_outliers = final_df[(np.abs(stats.zscore(final_df)) < 3).all(axis=1)]
 
 # input data into model for feature selection
 
 # create feature variables
-X = temp.drop('Preventable hospital stays Preventable Hospitalization Rate',axis= 1)
-y = temp['Preventable hospital stays Preventable Hospitalization Rate']
+X = df_no_outliers.drop('Preventable hospital stays Preventable Hospitalization Rate',axis= 1)
+y = df_no_outliers['Preventable hospital stays Preventable Hospitalization Rate']
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=101)
 
@@ -56,9 +56,11 @@ print('mean_absolute_error : ', mean_absolute_error(y_test, inital_predictions))
 # sns.heatmap(corr_mat2, annot=True, vmax=1, vmin=-1, center=0, mask=mask2)
 
 # tower thingy with outlier data 
-corr_mat2 = temp.corr(method = 'spearman')
+corr_mat2 = df_no_outliers.corr(method = 'spearman')
 
 plt.figure(figsize=(50,50))
 new_heatmap2 = sns.heatmap(corr_mat2[['Preventable hospital stays Preventable Hospitalization Rate']].sort_values(by='Preventable hospital stays Preventable Hospitalization Rate', ascending=False,), vmin=-1, vmax=1, annot = True, cmap='BrBG')
 new_heatmap2.set_title("Test", fontdict={'fontsize':18}, pad=16)
+
+#split dataframe into medical and social variables
 
