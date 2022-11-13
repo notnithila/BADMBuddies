@@ -12,21 +12,20 @@ from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error, mean_absolute_error
 
 
-df = preprocessing.get_final_df(preprocessing.df_outcomes_rankings, preprocessing.df_outcomes_subrankings, preprocessing.df_ranked_measure, preprocessing.df_additional_measure)
 #display(df)
 #df = preprocessing.get_final_df(preprocessing.df_outcomes_rankings, preprocessing.df_outcomes_subrankings, preprocessing.df_ranked_measure, preprocessing.df_additional_measure)
 #display(df)
 
+# Creates a heatmap of the correlation between all the columns in the dataframe
 fig, ax = plt.subplots(figsize=(84,84))
 corr_mat = df.corr()
 sns.heatmap(corr_mat)
 
-#final_df.corr()
-
+# Sorts the correlation matrix
 sorted_mat = corr_mat.unstack().sort_values()
 print(sorted_mat)
 
-
+# Merges all sheets from the excelfile into one dataframe
 final_df = preprocessing.get_final_df(preprocessing.df_outcomes_rankings, preprocessing.df_outcomes_subrankings, preprocessing.df_ranked_measure, preprocessing.df_additional_measure)
 final_df = impute(final_df)
 

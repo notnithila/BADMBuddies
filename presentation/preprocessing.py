@@ -15,6 +15,8 @@ df_analytic_data = pd.read_csv('/Users/avaneeshs/Documents/BADMBuddies/data/chr_
 df_trends_data = pd.read_csv('/Users/avaneeshs/Documents/BADMBuddies/data/chr_trends_csv_2022.csv')
 
 
+#This function renames the columns of the dataframes to better reflect the data that is shown in each column
+#This function also removes the first row of each dataframe, which is a duplicate of the column names
 def rename_columns(columns, first_row):
     prefix = ""
     for c in columns:
@@ -23,7 +25,7 @@ def rename_columns(columns, first_row):
         cIndex = columns.index(c)
         first_row[cIndex] = prefix + " " + first_row[cIndex]
     return 
-
+#This function calls the rename_columns function on each dataframe and returns the final dataframe
 def apply_rename_columns(df):
     x = df.columns.tolist()
     y = list(df.loc[0])
@@ -36,6 +38,8 @@ def apply_rename_columns(df):
     
     return df
 
+#this function calls the apply_rename_columns function on each dataframe and returns the final dataframe
+#this function also merges the dataframes together into one final dataframe
 def get_final_df(df_outcomes_rankings, df_outcomes_subrankings, df_ranked_measure, df_additional_measure):
     df_outcomes_rankings = apply_rename_columns(df_outcomes_rankings)
     df_outcomes_subrankings = apply_rename_columns(df_outcomes_subrankings)

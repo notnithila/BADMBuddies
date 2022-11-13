@@ -25,6 +25,7 @@ def impute(df_ranked_measure):
 
     return imputed_df
 
+# data with 
 medical_cols = ["Premature death Years of Potential Life Lost Rate", "Poor or fair health % Fair or Poor Health", "Poor physical health days Average Number of Physically Unhealthy Days", 
 "Poor mental health days Average Number of Mentally Unhealthy Days", "Low birthweight % Low birthweight",  "Sexually transmitted infections Chlamydia Rate","Mammography screening % With Annual Mammogram", 
 "Flu vaccinations % Vaccinated","COVID-19 age-adjusted mortality COVID-19 death rate", "Life expectancy Life Expectancy", "Premature age-adjusted mortality Age-adjusted Death Rate", "Child mortality Child Mortality Rate", 
