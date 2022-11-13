@@ -35,15 +35,18 @@ def apply_rename_columns(df):
     
     return df
 
-df_outcomes_rankings = apply_rename_columns(df_outcomes_rankings)
-df_outcomes_subrankings = apply_rename_columns(df_outcomes_subrankings)
-df_ranked_measure = apply_rename_columns(df_ranked_measure)
-df_additional_measure = apply_rename_columns(df_additional_measure)
+def get_final_df(df_outcomes_rankings, df_outcomes_subrankings, df_ranked_measure, df_additional_measure):
+    df_outcomes_rankings = apply_rename_columns(df_outcomes_rankings)
+    df_outcomes_subrankings = apply_rename_columns(df_outcomes_subrankings)
+    df_ranked_measure = apply_rename_columns(df_ranked_measure)
+    df_additional_measure = apply_rename_columns(df_additional_measure)
 
-massive_df = df_outcomes_rankings.merge(df_outcomes_subrankings, on=[" FIPS"," County"," State"])
-massive_df = massive_df.merge(df_ranked_measure, on=[" FIPS"," County"," State"])
-massive_df = massive_df.merge(df_additional_measure, on=[" FIPS"," County"," State"])
+    massive_df = df_outcomes_rankings.merge(df_outcomes_subrankings, on=[" FIPS"," County"," State"])
+    massive_df = massive_df.merge(df_ranked_measure, on=[" FIPS"," County"," State"])
+    massive_df = massive_df.merge(df_additional_measure, on=[" FIPS"," County"," State"])
 
-adjusted_massive_df = impute(massive_df)
+    adjusted_massive_df = impute(massive_df)
 
-display(adjusted_massive_df)
+    #display(adjusted_massive_df)
+    return adjusted_massive_df
+
