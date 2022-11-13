@@ -24,3 +24,5 @@ def impute(df_ranked_measure):
         imputed_df = pd.concat([imputed_df, imputed_series], axis=1)
 
     return imputed_df
+
+    
